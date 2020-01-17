@@ -17,6 +17,6 @@ public class HelloWorld {
     public ResponseEntity<String> responder(){
         LOG.info("Post received.");
 
-        return new ResponseEntity<>("Hello!", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Hello!", HttpStatus.OK);
     }
 }
