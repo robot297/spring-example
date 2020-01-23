@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Clone the repo down and run locally.
+Clone the repo down and run locally.mldmdm
 
 You can hit the [endpoint](localhost:8080/v2/api-docs) to view all the APIs exposed.
 
