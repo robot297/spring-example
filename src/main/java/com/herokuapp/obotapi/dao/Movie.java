@@ -10,7 +10,7 @@ public class Movie {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "Movie Name", length = 50)
+    @Column(name = "Movie_Name", length = 50)
     private String movieName;
 
     @Column(name = "Rating", length = 1)
