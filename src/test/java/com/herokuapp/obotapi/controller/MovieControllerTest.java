@@ -49,7 +49,7 @@ public class MovieControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.i").exists())
+                .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.movieName").value(movieName))
                 .andExpect(jsonPath("$.rating").value(rating));
     }
