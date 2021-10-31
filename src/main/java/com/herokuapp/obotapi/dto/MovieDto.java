@@ -1,17 +1,18 @@
 package com.herokuapp.obotapi.dto;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Max;
 
 public class MovieDto {
 
     private Long id;
 
     @NotEmpty(message = "movieName is a required field.")
-    @Size(max = 50, message = "movieName cannot contain more than 50 characters")
     private String movieName;
 
-    @Size(min = 0, max = 5, message = "rating has to be between 0 - 5.")
+    @Min(value = 0, message = "rating has to be between 0 - 5.")
+    @Max(value = 5, message = "rating has to be between 0 - 5.")
     private int rating;
 
     public MovieDto() {
