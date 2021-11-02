@@ -5,12 +5,14 @@ import com.herokuapp.obotapi.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class MovieController {
@@ -24,6 +26,16 @@ public class MovieController {
             MovieDto returnDto = movieService.createMovie(movieDto);
             return new ResponseEntity<>(returnDto, HttpStatus.CREATED);
         } catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        }
+    }
+
+    @GetMapping(path = "/movie")
+    public List<MovieDto> getMovies(){
+        try {
+            List<MovieDto> allMovies = movieService.getMovies();
+            return allMovies;
+        } catch (Exception exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
