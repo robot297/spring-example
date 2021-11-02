@@ -21,3 +21,4 @@ To test the endpoints, it is recommended that you use [Postman](https://www.post
 | -------- | -------- | -------- | ------- |
 | /health  | GET      | N/A | `App is OK` |
 | /movie   | POST     | `{"movieName" : "Movie","rating" : 4}` | `{ "id": 1,"movieName": "Movie","rating": 4}` |
+| /movie   | GET      | N/A |  `[{"id":1,"movieName":"null","rating":4}]`
