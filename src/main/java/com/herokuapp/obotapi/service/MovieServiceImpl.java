@@ -6,6 +6,9 @@ import com.herokuapp.obotapi.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class MovieServiceImpl implements MovieService {
     /**
@@ -29,5 +32,20 @@ public class MovieServiceImpl implements MovieService {
         movieDto.setId(savedMovie.getId());
 
         return movieDto;
+    }
+
+    @Override
+    public List<MovieDto> getMovies(){
+        List<Movie> allMovies = movieRepository.findAll();
+
+        List<MovieDto> movieDtoList = new ArrayList<>();
+
+        for(Movie movie: allMovies){
+            MovieDto movieDto = new MovieDto(movie.getId(), movie.getMovieName(), movie.getRating());
+
+            movieDtoList.add(movieDto);
+        }
+
+        return movieDtoList;
     }
 }
