@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 public class MovieController {
 
-    private static Logger LOG = LoggerFactory.getLogger(MovieController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MovieController.class);
 
     @Autowired
     private MovieService movieService;
