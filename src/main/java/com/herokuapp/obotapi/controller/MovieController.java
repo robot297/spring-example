@@ -1,6 +1,7 @@
 package com.herokuapp.obotapi.controller;
 
 import com.herokuapp.obotapi.dto.MovieDto;
+import com.herokuapp.obotapi.exceptions.MovieExistsException;
 import com.herokuapp.obotapi.service.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,11 +29,11 @@ public class MovieController {
     public ResponseEntity<MovieDto> createMovie(@Valid @RequestBody MovieDto movieDto){
         try {
             MovieDto returnDto = movieService.createMovie(movieDto);
-            LOG.info("Movie Created: {}", returnDto.getId());
+            LOG.info("Movie Created: {}", returnDto.getMovieName());
             return new ResponseEntity<>(returnDto, HttpStatus.CREATED);
-        } catch (Exception exception){
-            LOG.error("Error processing {}.  {}", movieDto, exception.getMessage());
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        } catch (MovieExistsException exception){
+            LOG.warn("Error processing {}.  {}", movieDto.getMovieName(), exception.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
         }
     }
 

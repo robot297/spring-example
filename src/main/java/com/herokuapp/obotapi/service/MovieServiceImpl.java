@@ -2,6 +2,7 @@ package com.herokuapp.obotapi.service;
 
 import com.herokuapp.obotapi.dao.Movie;
 import com.herokuapp.obotapi.dto.MovieDto;
+import com.herokuapp.obotapi.exceptions.MovieExistsException;
 import com.herokuapp.obotapi.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,14 @@ public class MovieServiceImpl implements MovieService {
     private MovieRepository movieRepository;
 
     @Override
-    public MovieDto createMovie(MovieDto movieDto){
+    public MovieDto createMovie(MovieDto movieDto) throws MovieExistsException {
+
+        Movie existingMovie = movieRepository.findMovieByMovieName(movieDto.getMovieName());
+
+        if(existingMovie != null){
+            throw new MovieExistsException("Movie " + movieDto.getMovieName() + " already exists");
+        }
+
         Movie movie = new Movie();
 
         movie.setMovieName(movieDto.getMovieName());
