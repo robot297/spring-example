@@ -26,6 +26,6 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Cache
-      uses: actions/cache@2.1.6
+      uses: actions/cache@v2.1.6
       with:
         path: target/*
