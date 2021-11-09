@@ -3,11 +3,14 @@ package com.herokuapp.obotapi.controller;
 import com.herokuapp.obotapi.dto.MovieDto;
 import com.herokuapp.obotapi.exceptions.MovieExistsException;
 import com.herokuapp.obotapi.service.MovieService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +20,9 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @RestController
+@Api(tags = "Movie REST endpoint.", value = "MovieController")
 public class MovieController {
 
     private static final Logger LOG = LoggerFactory.getLogger(MovieController.class);
@@ -25,6 +30,7 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
+    @ApiOperation(value = "Creates a new movie record.")
     @PostMapping(path = "/movie", consumes = "Application/json")
     public ResponseEntity<MovieDto> createMovie(@Valid @RequestBody MovieDto movieDto){
         try {
@@ -37,6 +43,7 @@ public class MovieController {
         }
     }
 
+    @ApiOperation(value = "Gets all the movies in the database.")
     @GetMapping(path = "/movie")
     public List<MovieDto> getMovies(){
         try {
