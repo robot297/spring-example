@@ -7,7 +7,7 @@ This is a simple Spring Boot app that showcases a basic pattern to build an API.
 You can find the endpoint deployed on [Heroku](http://heroku.com/) and the url for the
 endpoint is https://obot-api.herokuapp.com/.
 
-To access the swagger documentation you can go to this url: https://obot-api.herokuapp.com/swagger-ui.html
+To access the swagger documentation you can go to this url: https://obot-api.herokuapp.com/swagger-ui/index.html
 
 To see how this app evolved over time, you can look at the pull requests here:
 [https://github.com/robot297/spring-example/pulls](https://github.com/robot297/spring-example/pulls?q=is%3Apr+is%3Aclosed)
