@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
@@ -52,6 +49,18 @@ public class MovieController {
             return allMovies;
         } catch (Exception exception) {
             LOG.error("Error processing GET method: {}", exception.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "Updates a single movie in the database.")
+    @PutMapping(path = "/movie")
+    public ResponseEntity<MovieDto> updateMovie(@Valid @RequestBody MovieDto movieDto){
+        try {
+            MovieDto returnDto = movieService.updateMovie(movieDto);
+            return new ResponseEntity<>(returnDto, HttpStatus.ACCEPTED);
+        } catch (Exception exception){
+            LOG.error("Error processing POST method: {}", exception.getMessage());
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         }
     }
