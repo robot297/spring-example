@@ -10,4 +10,6 @@ public interface MovieService {
     MovieDto createMovie(MovieDto movieDto) throws MovieExistsException;
 
     List<MovieDto> getMovies() throws Exception;
+
+    MovieDto updateMovie(MovieDto movieDto) throws MovieExistsException;
 }
