@@ -56,4 +56,20 @@ public class MovieServiceImpl implements MovieService {
 
         return movieDtoList;
     }
+
+    @Override
+    public MovieDto updateMovie(MovieDto movieDto) throws MovieExistsException {
+
+        Movie existingMovie = movieRepository.findMovieById(movieDto.getId());
+
+        if(existingMovie == null){
+            throw new MovieExistsException("Movie " + movieDto.getId() + " does not exist.");
+        }
+
+        Movie movie = new Movie(movieDto.getId(), movieDto.getMovieName(), movieDto.getRating());
+
+        movieRepository.save(movie);
+
+        return movieDto;
+    }
 }
