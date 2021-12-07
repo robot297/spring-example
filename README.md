@@ -22,8 +22,9 @@ can be cloud ready (though this does not deploy to the cloud).
 
 To test the endpoints, it is recommended that you use [Postman](https://www.postman.com/).
 
-| Endpoint | Web method | What to send | Expected Result |
-| -------- | -------- | -------- | ------- |
-| /health  | GET      | N/A | `App is OK` |
-| /movie   | POST     | `{"movieName" : "Movie","rating" : 4}` | `{ "id": 1,"movieName": "Movie","rating": 4}` |
-| /movie   | GET      | N/A |  `[{"id":1,"movieName":"null","rating":4}]`
+| Endpoint | Web method | What to send                                  | Expected Result                               |
+|----------|------------|-----------------------------------------------|-----------------------------------------------|
+| /health  | GET        | N/A                                           | `App is OK`                                   |
+| /movie   | POST       | `{"movieName" : "Movie","rating" : 4}`        | `{ "id": 1,"movieName": "Movie","rating": 4}` |
+| /movie   | GET        | N/A                                           | `[{"id":1,"movieName":"null","rating":4}]`    |
+| /movie   | PUT        | `{ "id": 1,"movieName": "Movie","rating": 4}` | `{ "id": 1,"movieName": "Movie","rating": 4}` |
