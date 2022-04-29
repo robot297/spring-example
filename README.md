@@ -1,6 +1,6 @@
 # Sample Spring Boot API
 
-## About the app heyo
+## About the app
 
 This is a simple Spring Boot app that showcases a basic pattern to build an API.
 
